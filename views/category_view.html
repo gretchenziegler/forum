@@ -18,7 +18,7 @@
 	<div>
 		<button>upvote</button>
 		<button>downvote</button>
-		<p>wattage: {{total_votes}}</p>
+		<p>wattage: {{vote_total}}</p>
 		<a href='/subscriptions/categories/{{id}}'>subscribe</a>
 		<a href ='/categories/{{title}}/posts'>add your thoughts</a>
 	</div>
@@ -32,18 +32,18 @@
 		</ul>
 		{{/posts}}
 	</div>
-
+	
 	{{#category}}
+	{{^posts}}
 	<div>
-		<h3>delete empty category</h3>
+		<h3>apparently, nobody thinks about this topic.</h3>
 		<form method="POST" action="/categories/{{id}}">
 		<input type="hidden" name="_method" value="DELETE">
-		<a href="/categories/{{id}}"><button>delete category</button></a>
+		<button>delete it!</button>
 		</form>
 	</div>
+	{{/posts}}
 	{{/category}}
-
-	</div>
 
 	<a href='/'>home</a>
 </body>

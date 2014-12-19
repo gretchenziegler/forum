@@ -7,6 +7,7 @@ require "sinatra"
 require "pry"
 require "mustache"
 require "sinatra/reloader"
+require "redcarpet"
 
 # view index
 
@@ -48,7 +49,7 @@ end
 delete "/categories/:id" do
 	category = Category.find(params[:id])
 	category.destroy
-
+		
 	redirect "/"
 end
 
@@ -90,6 +91,8 @@ get "/posts/:id" do
 	category_id = post.category_id
 	category = Category.find(category_id)
 	comments = Comment.where(post_id: params[:id]).to_ary
+
+	# rendered_content = RedCarpet::Markdown.new(post.content)
 	post_view = File.read("./views/post_view.html")
 	Mustache.render(post_view, post: post, category: category, comments: comments)
 end
@@ -97,29 +100,66 @@ end
 # add a comment to a post
 
 post "/posts/:title/comments" do
+	post = Post.find_by(title: params[:title])
+	
+	post_id = post.id
+	category_id = post.category_id
+	date_added = Time.now
+	user_name = params["user_name"]
+	comment = params["comment"]
 
+	Comment.create({category_id: category_id, post_id: post_id, user_name: user_name, date_added: date_added, comment: comment})
+
+	redirect "/posts/#{post_id}"
 end
 
 # view category subscription form
 
 get "/subscriptions/categories/:id" do
+	category = Category.find(params[:id])
+	subscription_view = File.read("./views/subscription_view.html")
 
+	Mustache.render(subscription_view, category: category)
 end
-
 
 # view post subscription form
 
 get "/subscriptions/posts/:id" do
+	post = Post.find(params[:id])
+	subscription_view = File.read("./views/subscription_view.html")
 
+	Mustache.render(subscription_view, post: post)
 end
 
-# subscribe to a post or category
+# subscribe to a post
 
-post "subscriptions/:id" do
+post "/subscriptions/posts/:id" do
+	post = Post.find(params[:id])
 
+	post_id = post.id
+	category_id = post.category_id
+	first_name = params["first_name"]
+	last_name = params["last_name"]
+	email = params["email"]
+	phone = params["phone"]
+
+	Subscription.create({post_id: post_id, category_id: category_id, first_name: first_name, last_name: last_name, email: email, phone: phone})
+
+	redirect "/posts/#{post_id}"
 end
 
+# subscribe to a category
 
+post "/subscriptions/categories/:id" do
+	category = Category.find(params[:id])
 
+	category_id = category.id
+	first_name = params["first_name"]
+	last_name = params["last_name"]
+	email = params["email"]
+	phone = params["phone"]
 
+	Subscription.create({category_id: category_id, first_name: first_name, last_name: last_name, email: email, phone: phone})
 
+	redirect "/categories/#{category_id}"
+end
