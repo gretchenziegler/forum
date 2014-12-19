@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>whatchu think about?</title>
+	<link rel="stylesheet" type="text/css" href="./stylesheets/style.css" /> 
+</head>
+
+<body>
+	<div>
+		{{#category}}
+		<h1>whatchu think about <br>{{title}}?</h1>
+		
+	</div>
+
+	<div>
+		<h2>add your thought</h2>
+		<form method='POST' action='/categories/{{title}}/posts'>
+			<label>your name
+				<input type='text' name='user_name'/>
+			</label>
+			<br><br>
+			<label>title your thought
+				<input type='text' name='post_title'/>
+			</label>
+			<br><br><label>your thought
+				<input type='text' name='content'/>
+			</label>
+			<br><br>
+			<label>your thought bubble will burst on 
+				<input type='date' name='expiration_date'>
+			</label>
+			<br><br>
+			<button>submit your thought</button>
+		</form>
+	</div>
+
+
+	<div>
+		<a href='/categories/{{id}}'>cancel</a>
+		<a href='/'>home</a>
+	</div>
+	{{/category}}
+	
+</body>
+</html>

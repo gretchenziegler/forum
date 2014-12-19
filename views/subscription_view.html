@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>whatchu think about?</title>
+	<link rel="stylesheet" type="text/css" href="./stylesheets/style.css" /> 
+</head>
+
+<body>
+	<div>
+		{{#post_or_category}}
+		<h1>subscribe to learn whatchu and others think about<br>{{title}}!</h1>
+		<h2>receive sms and email updates</h2>
+	</div>
+
+	<div>
+		<h2>tell us about yourself</h2>
+		<form method='POST' action='/subscriptions/:id'>
+			<label>your first name
+				<input type='text' name='first_name'/>
+			</label>
+			<br><br>
+			<label>your last name
+				<input type='text' name='last_name'/>
+			</label>
+			<br><br>
+			<label>your email address
+				<input type='email' name='email'>
+			</label>
+			<br><br>
+			<label>your phone number
+				<input type='tel' name='phone'>
+			</label>
+			<br><br>
+			<button>subscribe</button>
+		</form>
+	</div>
+
+	<div>
+		<a href='/'>cancel</a>
+	{{/post_or_category}}
+	
+</body>
+</html>

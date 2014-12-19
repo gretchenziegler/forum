@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>whatchu think about?</title>
+	<link rel="stylesheet" type="text/css" href="./stylesheets/style.css" /> 
+</head>
+
+<body>
+	<div>
+		<h1>whatchu think about?</h1>
+		<h3>a penny for your thoughts</h3>
+	</div>
+
+	<div> 
+		<h2>add a topic</h2>
+		<form method='POST' action='/categories'>
+			<label>topic title
+				<input type='text' name='title'/>
+			</label>
+			<br><br>
+			<label>topic description
+				<input type='text' name='description'/>
+			</label>
+			<br><br>
+			<label>your name
+				<input type='text' name='user_name'>
+			</label>
+			<button>submit your topic</button>
+		</form>
+	</div>
+
+	<div>
+		<h2>all topics</h2> 
+		{{#categories}}
+		<ul>
+			<li><a href='/categories/{{id}}'>{{title}}</a></li>
+		</ul>
+		{{/categories}}
+	</div>
+</body>
+</html>

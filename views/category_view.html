@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>whatchu think about?</title>
+	<link rel="stylesheet" type="text/css" href="./stylesheets/style.css" /> 
+</head>
+
+<body>
+	{{#category}}
+	<div>
+		<h1>whatchu think about <br>{{title}}?</h1>
+		<h2>{{description}}</h2>
+		<h3>posted by {{user_name}} on {{date_added}}</h3>
+	</div>
+
+	<div>
+		<button>upvote</button>
+		<button>downvote</button>
+		<p>wattage: {{total_votes}}</p>
+		<a href='/subscriptions/categories/{{id}}'>subscribe</a>
+		<a href ='/categories/{{title}}/posts'>add your thoughts</a>
+	</div>
+
+	<div> 
+		<h2>all thoughts on {{title}}</h2>
+		{{/category}}
+		{{#posts}}
+		<ul>
+			<li><a href='/posts/{{id}}'>{{title}}</a></li>
+		</ul>
+		{{/posts}}
+	</div>
+
+	{{#category}}
+	<div>
+		<h3>delete empty category</h3>
+		<form method="POST" action="/categories/{{id}}">
+		<input type="hidden" name="_method" value="DELETE">
+		<a href="/categories/{{id}}"><button>delete category</button></a>
+		</form>
+	</div>
+	{{/category}}
+
+	</div>
+
+	<a href='/'>home</a>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>whatchu think about?</title>
+	<link rel="stylesheet" type="text/css" href="./stylesheets/style.css" /> 
+</head>
+
+<body>
+
+	{{#category}}
+	<div>
+		<h1>whatchu think about <br>{{title}}?</h1>
+	</div>
+	{{/category}}
+
+	{{#post}}
+	<div>
+		<h2>{{title}}</h2>
+		<p>{{content}}</p>
+	</div>
+
+	<div>
+		<p>thought by {{user_name}} on {{date_added}}</p>
+		<button>upvote</button>
+		<button>downvote</button>
+		<p>wattage: {{vote_total}}</p>
+		<a href='/subscriptions/posts/{{id}}'>subscribe</a>
+	</div>
+
+	<div>
+		<h2>add a bubble</h2>
+		<form method='POST' action='/posts/{{title}}/comments'>
+			<label>your name
+				<input type='text' name='user_name'/>
+			</label>
+			<br><br>
+			<label>your bubble
+				<input type='text' name='comment'/>
+			</label>
+		</form>
+	</div>
+
+	<div>
+		<h2>bubbles about {{title}}</h2>
+		{{/post}}
+		{{#comments}}
+		<p>{{comment}}</p>
+		<p>bubble by {{user_name}} on {{date_added}}</p>
+		{{/comments}}
+	</div>
+	{{#post}}	
+	<a href ='/categories/{{category_id}}'>back</a>
+	{{/post}}
+
+	<a href='/'>home</a>
+	
+</body>
+</html>
