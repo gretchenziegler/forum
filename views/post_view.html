@@ -18,17 +18,18 @@
 	{{#post}}
 	<div>
 		<h2>{{title}}</h2>
-		<p>{{rendered_content}}</p>
+		{{{rendered_content}}}
 	</div>
 
 	<div>
 		<p>thought by {{user_name}} on {{date_added}}</p>
-		<button>upvote</button>
-		<button>downvote</button>
+		<a href="/posts/{{id}}/upvote">upvote</a>
+		<a href="/posts/{{id}}/downvote">downvote</a>
 		<p>wattage: {{vote_total}}</p>
 		<a href='/subscriptions/posts/{{id}}'>subscribe</a>
 	</div>
 
+{{^expired}}
 	<div>
 		<h2>add a bubble</h2>
 		<form method='POST' action='/posts/{{title}}/comments'>
@@ -43,6 +44,7 @@
 			<button>submit your bubble</button>
 		</form>
 	</div>
+	{{/expired}}
 
 	<div>
 		<h2>bubbles about {{title}}</h2>

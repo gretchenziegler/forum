@@ -16,7 +16,7 @@
 
 	<div>
 		<h2>add your thought</h2>
-		<form method='POST' action='/categories/{{title}}/posts'>
+		<form id="new_post" method='POST' action='/categories/{{title}}/posts'>
 			<label>your name
 				<input type='text' name='user_name'/>
 			</label>
@@ -24,14 +24,16 @@
 			<label>title your thought
 				<input type='text' name='post_title'/>
 			</label>
-			<br><br><label>your thought
-				<input type='text' name='content'/>
-			</label>
 			<br><br>
+<!-- 			<label>your thought
+				<input type='textarea' name='content'/>
+			</label>
+			<br><br> -->
 			<label>your thought bubble will burst on 
 				<input type='date' name='expiration_date'>
 			</label>
 			<br><br>
+			<textarea rows="4" cols="50" name="content" form="new_post" placeholder="your thought"></textarea>
 			<button>submit your thought</button>
 		</form>
 	</div>

@@ -92,9 +92,22 @@ get "/posts/:id" do
 	category = Category.find(category_id)
 	comments = Comment.where(post_id: params[:id]).to_ary
 
-	# rendered_content = RedCarpet::Markdown.new(post.content)
+	renderer = Redcarpet::Render::HTML.new
+  markdown = Redcarpet::Markdown.new(renderer)
+	rendered_content = markdown.render(post.content)
+	binding.pry
+
+	now = Date.today
+	if post.expiration_date == nil
+		expired = false
+	elsif post.expiration_date - now <= 0
+		expired = true
+	else 
+		expired = false
+	end
+
 	post_view = File.read("./views/post_view.html")
-	Mustache.render(post_view, post: post, category: category, comments: comments)
+	Mustache.render(post_view, post: post, category: category, comments: comments, rendered_content: rendered_content, expired: expired)
 end
 
 # add a comment to a post
@@ -162,4 +175,44 @@ post "/subscriptions/categories/:id" do
 	Subscription.create({category_id: category_id, first_name: first_name, last_name: last_name, email: email, phone: phone})
 
 	redirect "/categories/#{category_id}"
+end
+
+# upvote a category
+
+get "/categories/:id/upvote" do
+	category = Category.find(params[:id])
+	category.upvotes +=1
+	category.vote_total += 1
+	category.save
+	redirect "/categories/#{params[:id]}"
+end
+
+# downvote a category
+
+get "/categories/:id/downvote" do
+	category = Category.find(params[:id])
+	category.downvotes +=1
+	category.vote_total -= 1
+	category.save
+	redirect "/categories/#{params[:id]}"
+end
+
+# upvote a post
+
+get "/posts/:id/upvote" do
+	post = Post.find(params[:id])
+	post.upvotes +=1
+	post.vote_total += 1
+	post.save
+	redirect "/posts/#{params[:id]}"
+end
+
+# downvote a post
+
+get "/posts/:id/downvote" do
+	post = Post.find(params[:id])
+	post.downvotes +=1
+	post.vote_total -= 1
+	post.save
+	redirect "/posts/#{params[:id]}"
 end
