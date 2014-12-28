@@ -8,6 +8,8 @@ require "pry"
 require "mustache"
 require "sinatra/reloader"
 require "redcarpet"
+require "will_paginate"
+require "will_paginate/active_record"
 
 # view index
 
@@ -19,11 +21,17 @@ end
 
 # view information about a specific category
 
-get "/categories/:id" do
+get "/categories/:id/:page" do
 	category = Category.find(params[:id])
-	posts = Post.where(category_id: params[:id]).to_ary
+	posts = category.posts
+	pagination = posts.paginate(:page => params[:page], :per_page => 10).to_ary
+	current_page = params[:page]
+
+	next_page = pagination.next_page
+	previous_page = pagination.previous_page
+
 	category_view = File.read("./views/category_view.html")
-	Mustache.render(category_view, category: category, posts: posts)
+	Mustache.render(category_view, category: category, pagination: pagination, next_page: next_page, previous_page: previous_page, current_page: current_page)
 end
 
 # create a new category with description
@@ -41,7 +49,7 @@ post "/categories" do
 
 	id = new_category.id
 
-	redirect "/categories/#{id}"
+	redirect "/categories/#{id}/1"
 end
 
 # delete a post-less category
@@ -55,7 +63,7 @@ end
 
 # view add post form
 
-get "/categories/:title/posts" do
+get "/:title/posts" do
 	category = Category.find_by(title: params[:title])
 	new_post = File.read("./views/new_post.html")
 	Mustache.render(new_post, category: category)
@@ -63,7 +71,7 @@ end
 
 # create a new forum post within a category
 
-post "/categories/:title/posts" do
+post "/:title/posts" do
 	category = Category.find_by(title: params[:title])
 
 	category_id = category.id
@@ -95,7 +103,6 @@ get "/posts/:id" do
 	renderer = Redcarpet::Render::HTML.new
   markdown = Redcarpet::Markdown.new(renderer)
 	rendered_content = markdown.render(post.content)
-	binding.pry
 
 	now = Date.today
 	if post.expiration_date == nil
@@ -179,22 +186,22 @@ end
 
 # upvote a category
 
-get "/categories/:id/upvote" do
+get "/categories/:id/:page/upvote" do
 	category = Category.find(params[:id])
 	category.upvotes +=1
 	category.vote_total += 1
 	category.save
-	redirect "/categories/#{params[:id]}"
+	redirect "/categories/#{params[:id]}/#{params[:page]}"
 end
 
 # downvote a category
 
-get "/categories/:id/downvote" do
+get "/categories/:id/:page/downvote" do
 	category = Category.find(params[:id])
 	category.downvotes +=1
 	category.vote_total -= 1
 	category.save
-	redirect "/categories/#{params[:id]}"
+	redirect "/categories/#{params[:id]}/#{params[:page]}"
 end
 
 # upvote a post

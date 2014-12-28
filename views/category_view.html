@@ -16,24 +16,30 @@
 	</div>
 
 	<div>
-		<a href="/categories/{{id}}/upvote"><img width=5% src="http://images.clipartpanda.com/light-bulb-idea-icon-Educator-Effectiveness-Tag_Icon_2881x1401_bw.jpg"></a>
-		<a href="/categories/{{id}}/downvote">downvote</a>
+		<a href="/categories/{{id}}/{{current_page}}/upvote"><img width=5% src="http://images.clipartpanda.com/light-bulb-idea-icon-Educator-Effectiveness-Tag_Icon_2881x1401_bw.jpg"></a>
+		<a href="/categories/{{id}}/{{current_page}}/downvote">downvote</a>
 		<p>wattage: {{vote_total}}</p>
 		<a href='/subscriptions/categories/{{id}}'>subscribe</a>
-		<a href ='/categories/{{title}}/posts'>add your thoughts</a>
+		<a href ='/{{title}}/posts'>add your thoughts</a>
 	</div>
 
 	<div> 
 		<h2>all thoughts on {{title}}</h2>
 		{{/category}}
-		{{#posts}}
+		{{#pagination}}
 		<ul>
 			<li><a href='/posts/{{id}}'>{{title}}</a></li>
 		</ul>
-		{{/posts}}
+		{{/pagination}}
+		{{#category}}
+		{{#next_page}}
+		<a href='/categories/{{id}}/{{next_page}}'>next page</a>
+		{{/next_page}}
+		{{#previous_page}}
+		<a href = '/categories/{{id}}/{{previous_page}}'>previous page</a>
+		{{/previous_page}}
 	</div>
 	
-	{{#category}}
 	{{^posts}}
 	<div>
 		<h3>apparently, nobody thinks about this topic.</h3>
