@@ -10,6 +10,8 @@ require "sinatra/reloader"
 require "redcarpet"
 require "will_paginate"
 require "will_paginate/active_record"
+require "twilio-ruby"
+require "sendgrid-ruby"
 
 # view index
 
@@ -89,6 +91,27 @@ post "/:title/posts" do
 
 	id = new_post.id
 
+	subscribers = category.subscriptions
+
+	numbers = subscribers.map {|subscriber| subscriber[:phone]}
+	numbers.each do |number|
+		account_sid = 'AC6304fd30e4c5e09c62858029e1a1c49c'
+		auth_token = '5eb57f166033dfa5036659332158657b'
+		@client = Twilio::REST::Client.new account_sid, auth_token
+		message = @client.account.messages.create(
+		:body => "Someone has updated #{params[:title]}! Whatchu think about that?",
+		:to => number,
+		:from => '+12035280914'
+		)
+		puts message.sid
+	end
+
+	emails = subscribers.map {|subscriber| subscriber[:email]}
+	emails.each do |email|
+		client = SendGrid::Client.new(api_user: 'gretchenziegler', api_key: '8DinosaurCupcakes')
+		client.send(SendGrid::Mail.new(to: email, from: 'gretchenziegler@gmail.com', subject: 'Whatchu think about this?', text: 'Someone has updated your subscribed category! Go check it out and add whatchu think!', html: '<h1>Someone has updated your subscribed category!</h1><br><p>Go check it out and add whatchu think!</p>'))
+	end
+
 	redirect "/posts/#{id}"
 end
 
@@ -129,7 +152,27 @@ post "/posts/:title/comments" do
 	comment = params["comment"]
 
 	Comment.create({category_id: category_id, post_id: post_id, user_name: user_name, date_added: date_added, comment: comment})
+	
+	subscribers = post.subscriptions
+	
+	numbers = subscribers.map {|subscriber| subscriber[:phone]}
+	numbers.each do |number|
+		account_sid = 'AC6304fd30e4c5e09c62858029e1a1c49c'
+		auth_token = '5eb57f166033dfa5036659332158657b'
+		@client = Twilio::REST::Client.new account_sid, auth_token
+		message = @client.account.messages.create(
+		:body => "Someone has updated #{params[:title]}! Whatchu think about that?",
+		:to => number,
+		:from => '+12035280914'
+		)
+		puts message.sid
+	end
 
+	emails = subscribers.map {|subscriber| subscriber[:email]}
+	emails.each do |email|
+		client = SendGrid::Client.new(api_user: 'gretchenziegler', api_key: '8DinosaurCupcakes')
+		client.send(SendGrid::Mail.new(to: email, from: 'gretchenziegler@gmail.com', subject: 'Whatchu think about this?', text: 'Someone has updated your subscribed post! Go check it out and add whatchu think!', html: '<h1>Someone has updated your subscribed post!</h1><br><p>Go check it out and add whatchu think!</p>'))
+	end
 	redirect "/posts/#{post_id}"
 end
 

@@ -4,28 +4,32 @@
 <head>
 	<meta charset="UTF-8">
 	<title>whatchu think about?</title>
-	<link rel="stylesheet" type="text/css" href="./stylesheets/style.css" /> 
+	<link rel="stylesheet" type="text/css" href="../../../stylesheets/style.css" /> 
+	<link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
 	{{#category}}
-	<div>
-		<h1>whatchu think about <br>{{title}}?</h1>
-		<h2>{{description}}</h2>
-		<h3>posted by {{user_name}} on {{date_added}}</h3>
+	<div class="header">
+		<h1>whatchu think about...</h1><h3 class="title">{{title}}?</h3>
 	</div>
 
-	<div>
-		<a href="/categories/{{id}}/{{current_page}}/upvote"><img width=5% src="http://images.clipartpanda.com/light-bulb-idea-icon-Educator-Effectiveness-Tag_Icon_2881x1401_bw.jpg"></a>
-		<a href="/categories/{{id}}/{{current_page}}/downvote">downvote</a>
-		<p>wattage: {{vote_total}}</p>
-		<a href='/subscriptions/categories/{{id}}'>subscribe</a>
-		<a href ='/{{title}}/posts'>add your thoughts</a>
+	<div class="add">
+		<h2>{{description}}</h2>
+		<p><strong>posted by {{user_name}} on {{date_added}}</strong></p>
+		<p>
+			<a class="upvote" href="/categories/{{id}}/{{current_page}}/upvote"><img width=1% src="../../../images/lightbulb.png"></a>
+			<a class="downvote" href="/categories/{{id}}/{{current_page}}/downvote"><img width=1% src="../../../images/downvote.png"></a>
+			wattage: {{vote_total}}
+		</p>
+		<a href='/subscriptions/categories/{{id}}'>subscribe to {{title}}!</a>
 	</div>
 
 	<div> 
 		<h2>all thoughts on {{title}}</h2>
 		{{/category}}
+		<h3><a href ='/{{title}}/posts'>add your thought</a></h3>
 		{{#pagination}}
 		<ul>
 			<li><a href='/posts/{{id}}'>{{title}}</a></li>
@@ -42,7 +46,7 @@
 	
 	{{^posts}}
 	<div>
-		<h3>apparently, nobody thinks about this topic.</h3>
+		<p>apparently, nobody else thinks about this topic.</p>
 		<form method="POST" action="/categories/{{id}}">
 		<input type="hidden" name="_method" value="DELETE">
 		<button>delete it!</button>

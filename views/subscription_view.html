@@ -4,17 +4,20 @@
 <head>
 	<meta charset="UTF-8">
 	<title>whatchu think about?</title>
-	<link rel="stylesheet" type="text/css" href="./stylesheets/style.css" /> 
+	<link rel="stylesheet" type="text/css" href="../../../stylesheets/style.css" /> 
+	<link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
 	{{#category}}	
-	<div>
-		<h1>subscribe to learn whatchu and others think about<br>{{title}}!</h1>
+	<div class="header">
+		<h1>subscribe to learn whatchu and others think about</h1>
+		<h3 class="title">{{title}}!</h3>
 		<h2>receive sms and email updates</h2>
 	</div>
 
-	<div>
+	<div class="add">
 		<h2>tell us about yourself</h2>
 		<form method='POST' action='/subscriptions/categories/{{id}}'>
 			<label>your first name
@@ -41,12 +44,13 @@
 	{{/category}}
 
 	{{#post}}
-	<div>
-		<h1>subscribe to learn whatchu and others think about<br>{{title}}!</h1>
+	<div class="header">
+		<h1>subscribe to learn whatchu and others think about</h1>
+		<h3 class="title">{{title}}!</h3>
 		<h2>receive sms and email updates</h2>
 	</div>
 
-	<div>
+	<div class="add">
 		<h2>tell us about yourself</h2>
 		<form method='POST' action='/subscriptions/posts/{{id}}'>
 			<label>your first name

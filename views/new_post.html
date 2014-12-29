@@ -4,17 +4,19 @@
 <head>
 	<meta charset="UTF-8">
 	<title>whatchu think about?</title>
-	<link rel="stylesheet" type="text/css" href="./stylesheets/style.css" /> 
+	<link rel="stylesheet" type="text/css" href="../../stylesheets/style.css" /> 
+	<link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
-	<div>
+	<div class="header">
 		{{#category}}
-		<h1>whatchu think about <br>{{title}}?</h1>
-		
+		<h1>whatchu think about</h1>
+		<h3 class="title">{{title}}?</h3>
 	</div>
 
-	<div>
+	<div class="add">
 		<h2>add your thought</h2>
 		<form id="new_post" method='POST' action='/{{title}}/posts'>
 			<label>your name
