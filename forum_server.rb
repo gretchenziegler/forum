@@ -28,12 +28,11 @@ get "/categories/:id/:page" do
 	posts = category.posts
 	pagination = posts.paginate(:page => params[:page], :per_page => 10).to_ary
 	current_page = params[:page]
-
+	date = category.date_added.strftime("%m/%d/%Y")
 	next_page = pagination.next_page
 	previous_page = pagination.previous_page
-
 	category_view = File.read("./views/category_view.html")
-	Mustache.render(category_view, category: category, pagination: pagination, next_page: next_page, previous_page: previous_page, current_page: current_page)
+	Mustache.render(category_view, category: category, pagination: pagination, next_page: next_page, previous_page: previous_page, current_page: current_page, date: date)
 end
 
 # create a new category with description
@@ -78,9 +77,9 @@ post "/:title/posts" do
 
 	category_id = category.id
 
-	user_name = params["user_name"]
-	title = params["post_title"]
-	content = params["content"]
+	user_name = params["user_name"].downcase
+	title = params["post_title"].downcase
+	content = params["content"].downcase
 	date_added = Time.now
 	expiration_date = params["expiration_date"]
 	upvotes = 0
@@ -123,6 +122,8 @@ get "/posts/:id" do
 	category = Category.find(category_id)
 	comments = Comment.where(post_id: params[:id]).to_ary
 
+	post_date = post.date_added.strftime("%m/%d/%Y")
+
 	renderer = Redcarpet::Render::HTML.new
   markdown = Redcarpet::Markdown.new(renderer)
 	rendered_content = markdown.render(post.content)
@@ -137,7 +138,7 @@ get "/posts/:id" do
 	end
 
 	post_view = File.read("./views/post_view.html")
-	Mustache.render(post_view, post: post, category: category, comments: comments, rendered_content: rendered_content, expired: expired)
+	Mustache.render(post_view, post: post, category: category, comments: comments, rendered_content: rendered_content, expired: expired, post_date: post_date)
 end
 
 # add a comment to a post

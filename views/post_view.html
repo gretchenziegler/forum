@@ -10,8 +10,12 @@
 </head>
 
 <body>
-
 	{{#category}}
+	<nav>
+		<a href='/'>home</a> |
+		<a href='/categories/{{id}}/1'>back</a>
+	</nav>
+
 	<div class="header">
 		<h1>whatchu think about</h1>
 		<h3 class="title">{{title}}?</h3>
@@ -21,8 +25,8 @@
 	{{#post}}
 	<div class="add">
 		<h2>{{title}}</h2>
-		{{{rendered_content}}}
-		<p>thought by {{user_name}} on {{date_added}}</p>
+		<p id="post">{{{rendered_content}}}</p>
+		<p>thought by {{user_name}} on {{post_date}}</p>
 		<p>
 			<a class="upvote" href="/posts/{{id}}/upvote"><img width=1% src="../../../images/lightbulb.png"></a>
 			<a class="downvote" href="/posts/{{id}}/downvote"><img width=1% src="../../../images/downvote.png"></a>
@@ -31,7 +35,20 @@
 		<a href='/subscriptions/posts/{{id}}'>subscribe to {{title}}!</a>
 	</div>
 
-{{^expired}}
+	<div>
+		<h2>bubbles about {{title}}</h2>
+		{{/post}}
+		{{#comments}}
+		<div id="bubble">
+			<p>{{comment}}</p>
+		</div>
+		<p>bubble by {{user_name}} on {{date_added}}</p>
+		{{/comments}}
+	</div>
+	<br>
+	{{#post}}
+
+	{{^expired}}
 	<div class="add">
 		<h2>add a bubble</h2>
 		<form method='POST' action='/posts/{{title}}/comments'>
@@ -46,23 +63,11 @@
 			<button>submit your bubble</button>
 		</form>
 	</div>
-	{{/expired}}
-
-	<div>
-		<h2>bubbles about {{title}}</h2>
-		{{/post}}
-		{{#comments}}
-		<div class="bubble">
-			<p>{{comment}}</p>
-			<p>bubble by {{user_name}} on {{date_added}}</p>
-		</div>
-		{{/comments}}
-	</div>
-	{{#post}}	
-	<a href ='/categories/{{category_id}}/1'>back</a>
+	<br>
+	{{/expired}}	
 	{{/post}}
-
-	<a href='/'>home</a>
-	
+	<footer>
+		<p id="copy">whatchu think about? &copy; 2014</p>
+	</footer>
 </body>
 </html>

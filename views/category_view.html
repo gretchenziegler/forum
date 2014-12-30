@@ -11,13 +11,18 @@
 
 <body>
 	{{#category}}
+	<nav>
+		<a href='/'>home</a> |
+		<a href='/subscriptions/categories/{{id}}'>subscribe</a>
+	</nav>
+
 	<div class="header">
 		<h1>whatchu think about...</h1><h3 class="title">{{title}}?</h3>
 	</div>
 
 	<div class="add">
 		<h2>{{description}}</h2>
-		<p><strong>posted by {{user_name}} on {{date_added}}</strong></p>
+		<p><strong>posted by {{user_name}} on {{date}}</strong></p>
 		<p>
 			<a class="upvote" href="/categories/{{id}}/{{current_page}}/upvote"><img width=1% src="../../../images/lightbulb.png"></a>
 			<a class="downvote" href="/categories/{{id}}/{{current_page}}/downvote"><img width=1% src="../../../images/downvote.png"></a>
@@ -28,20 +33,23 @@
 
 	<div> 
 		<h2>all thoughts on {{title}}</h2>
+		<h3></h3>
 		{{/category}}
-		<h3><a href ='/{{title}}/posts'>add your thought</a></h3>
 		{{#pagination}}
 		<ul>
 			<li><a href='/posts/{{id}}'>{{title}}</a></li>
 		</ul>
 		{{/pagination}}
 		{{#category}}
+		<div class="page">
+		<a href ='/{{title}}/posts'>add your thought</a>
 		{{#next_page}}
-		<a href='/categories/{{id}}/{{next_page}}'>next page</a>
+			| <a href='/categories/{{id}}/{{next_page}}'>next page</a>
 		{{/next_page}}
 		{{#previous_page}}
-		<a href = '/categories/{{id}}/{{previous_page}}'>previous page</a>
+			| <a href='/categories/{{id}}/{{previous_page}}'>previous page</a>
 		{{/previous_page}}
+		</div>
 	</div>
 	
 	{{^posts}}
@@ -54,7 +62,8 @@
 	</div>
 	{{/posts}}
 	{{/category}}
-
-	<a href='/'>home</a>
+	<footer>
+		<p id="copy">whatchu think about? &copy; 2014</p>
+	</footer>
 </body>
 </html>

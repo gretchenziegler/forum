@@ -11,14 +11,18 @@
 
 <body>
 	{{#category}}	
+	<nav>
+		<a href='/'>home</a> |
+		<a href='/categories/{{id}}/1'>cancel</a>
+	</nav>
+
 	<div class="header">
-		<h1>subscribe to learn whatchu and others think about</h1>
+		<h1>subscribe to learn whatchu and others think about...</h1>
 		<h3 class="title">{{title}}!</h3>
-		<h2>receive sms and email updates</h2>
 	</div>
 
 	<div class="add">
-		<h2>tell us about yourself</h2>
+		<h2>tell us about yourself to receive sms and email updates.</h2>
 		<form method='POST' action='/subscriptions/categories/{{id}}'>
 			<label>your first name
 				<input type='text' name='first_name'/>
@@ -38,12 +42,15 @@
 			<br><br>
 			<button>subscribe</button>
 		</form>
-		<div>
-			<a href='/categories/{{id}}/1'>cancel</a>
-		</div>
+	</div>
 	{{/category}}
 
 	{{#post}}
+	<nav>
+		<a href='/'>home</a> |
+		<a href='/posts/{{id}}'>cancel</a>
+	</nav>
+
 	<div class="header">
 		<h1>subscribe to learn whatchu and others think about</h1>
 		<h3 class="title">{{title}}!</h3>
@@ -71,12 +78,10 @@
 			<br><br>
 			<button>subscribe</button>
 		</form>
-		<div>
-			<a href='/posts/{{id}}'>cancel</a>
-		</div>
-		{{/post}}
 	</div>
-
-	
+	{{/post}}
+	<footer>
+		<p id="copy">whatchu think about? &copy; 2014</p>
+	</footer>
 </body>
 </html>

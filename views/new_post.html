@@ -10,8 +10,13 @@
 </head>
 
 <body>
-	<div class="header">
-		{{#category}}
+	{{#category}}
+	<nav>
+		<a href='/'>home</a> |
+		<a href='/categories/{{id}}/1'>cancel</a>
+	</nav>
+
+	<div class="header">	
 		<h1>whatchu think about</h1>
 		<h3 class="title">{{title}}?</h3>
 	</div>
@@ -32,16 +37,13 @@
 			</label>
 			<br><br>
 			<textarea rows="4" cols="50" name="content" form="new_post" placeholder="your thought"></textarea>
+			<br>
 			<button>submit your thought</button>
 		</form>
 	</div>
-
-
-	<div>
-		<a href='/categories/{{id}}/1'>cancel</a>
-		<a href='/'>home</a>
-	</div>
 	{{/category}}
-	
+	<footer>
+		<p id="copy">whatchu think about? &copy; 2014</p>
+	</footer>
 </body>
 </html>
