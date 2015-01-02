@@ -8,19 +8,19 @@
 
 #### activerecord
 
-activerecord allows users to create and store data within a database, and manipulate relationships between that data; all topics, posts, and comments within ** whatchu think about? ** are stored and connected via activerecord.
+activerecord allows users to create and store data within a database, and manipulate relationships between that data; all topics, posts, and comments within **whatchu think about?** are stored and connected via activerecord.
 
 #### sinatra
 
-sinatra is a domain-specific language that helps build ruby applications. ** whatchu think about? ** uses sinatra to define routes within the site.
+sinatra is a domain-specific language that helps build ruby applications. **whatchu think about?** uses sinatra to define routes within the site.
 
 #### mustache
 
-mustache is a great tool for creating templates. it works pretty seamlessly with html, sinatra, and activerecord to display data from within a database and render it as html. it's what makes ** whatchu think about? ** look so darn fancy!
+mustache is a great tool for creating templates. it works pretty seamlessly with html, sinatra, and activerecord to display data from within a database and render it as html. it's what makes **whatchu think about?** look so darn fancy!
 
 #### redcarpet
 
-redcarpet is a ruby library for markdown processing. **whatchu think about? ** uses redcarpet to allow users to write their posts in markdown and have it rendered as html.
+redcarpet is a ruby library for markdown processing. **whatchu think about?** uses redcarpet to allow users to write their posts in markdown and have it rendered as html.
 
 #### will_paginate
 
@@ -32,7 +32,7 @@ if you want to reach out to your user base, twilio and sendgrid will help with t
 
 ## download whatchu think about?
 
-you can run **whatchu think about? **on your own localhost! here's how:
+you can run **whatchu think about?** on your own localhost! here's how:
 
 1. 
 2.
@@ -42,8 +42,8 @@ you can run **whatchu think about? **on your own localhost! here's how:
 
 ## trello
 
-check out the process of creating whatchu think about? (think wireframes, erds, user stories, and all that good stuff) [here](https://trello.com/b/V6XeCQel/forum)
+check out the process of creating **whatchu think about?** (think wireframes, erds, user stories, and all that good stuff) [here](https://trello.com/b/V6XeCQel/forum)
 
 ## live url
 
-add your thoughts to [whatchu think about?](https://www.gretchenziegler.com)
+add your thoughts to [**whatchu think about?**](https://www.gretchenziegler.com)
