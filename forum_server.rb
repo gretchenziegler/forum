@@ -151,8 +151,11 @@ post "/posts/:title/comments" do
 	date_added = Time.now.strftime("%m/%d/%Y")
 	user_name = params["user_name"]
 	comment = params["comment"]
+	upvotes = 0
+	downvotes = 0
+	vote_total = 0
 	
-	Comment.create({category_id: category_id, post_id: post_id, user_name: user_name, date_added: date_added, comment: comment})
+	Comment.create({category_id: category_id, post_id: post_id, user_name: user_name, date_added: date_added, comment: comment, upvotes: upvotes, downvotes: downvotes, vote_total: vote_total})
 	
 	subscribers = post.subscriptions
 	
@@ -266,4 +269,26 @@ get "/posts/:id/downvote" do
 	post.vote_total -= 1
 	post.save
 	redirect "/posts/#{params[:id]}"
+end
+
+# upvote a comment
+
+get "/comments/:id/upvote" do
+	comment = Comment.find(params[:id])
+	post_id = comment.post_id
+	comment.upvotes +=1
+	comment.vote_total += 1
+	comment.save
+	redirect "/posts/#{post_id}"
+end
+
+# downvote a comment
+
+get "/comments/:id/downvote" do
+	comment = Comment.find(params[:id])
+	post_id = comment.post_id
+	comment.downvotes +=1
+	comment.vote_total -= 1
+	comment.save
+	redirect "/posts/#{post_id}"
 end

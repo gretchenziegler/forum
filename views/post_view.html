@@ -43,6 +43,11 @@
 			<p>{{comment}}</p>
 		</div>
 		<p>bubble by {{user_name}} on {{date_added}}</p>
+		<p>
+			<a class="upvote" href="/comments/{{id}}/upvote"><img width=1% src="../../../images/lightbulb.png"></a>
+			<a class="downvote" href="/comments/{{id}}/downvote"><img width=1% src="../../../images/downvote.png"></a>
+			wattage: {{vote_total}}
+		</p>
 		{{/comments}}
 	</div>
 	<br>
