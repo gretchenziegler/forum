@@ -148,10 +148,10 @@ post "/posts/:title/comments" do
 	
 	post_id = post.id
 	category_id = post.category_id
-	date_added = Time.now
+	date_added = Time.now.strftime("%m/%d/%Y")
 	user_name = params["user_name"]
 	comment = params["comment"]
-
+	
 	Comment.create({category_id: category_id, post_id: post_id, user_name: user_name, date_added: date_added, comment: comment})
 	
 	subscribers = post.subscriptions
