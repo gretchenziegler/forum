@@ -54,6 +54,10 @@ a:hover {
 	color: white;
 }
 
+.vote {
+	width: 1%;
+}
+
 .upvote:hover {
 	background-color: #eeaa06;
 }
@@ -109,3 +113,27 @@ button:hover {
 	font-size: 1.5em;
 	border-radius: 2%;
 }
+
+@media only screen and (max-width: 480px) {
+	
+	body {
+		font-size: .75em;
+	}
+
+	h1 {
+		font-size: 1.5em;
+	}
+
+	h2 {
+		font-size: 1em;
+	}
+
+	.title {
+		font-size: 1.5em;
+	}
+
+	.vote {
+		width: 3%;
+	}
+}
+

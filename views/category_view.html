@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial scale=1">
 	<title>whatchu think about?</title>
 	<link rel="stylesheet" type="text/css" href="../../../stylesheets/style.css" /> 
 	<link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
@@ -24,8 +24,8 @@
 		<h2>{{description}}</h2>
 		<p><strong>posted by {{user_name}} on {{date}}</strong></p>
 		<p>
-			<a class="upvote" href="/categories/{{id}}/{{current_page}}/upvote"><img width=1% src="../../../images/lightbulb.png"></a>
-			<a class="downvote" href="/categories/{{id}}/{{current_page}}/downvote"><img width=1% src="../../../images/downvote.png"></a>
+			<a class="upvote" href="/categories/{{id}}/{{current_page}}/upvote"><img class="vote" src="../../../images/lightbulb.png"></a>
+			<a class="downvote" href="/categories/{{id}}/{{current_page}}/downvote"><img class="vote" src="../../../images/downvote.png"></a>
 			wattage: {{vote_total}}
 		</p>
 		<a href='/subscriptions/categories/{{id}}'>subscribe to {{title}}!</a>
