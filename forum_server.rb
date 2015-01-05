@@ -7,6 +7,11 @@ require "sinatra"
 require "pry"
 require "mustache"
 require "sinatra/reloader"
+require "will_paginate"
+require "will_paginate/ruby"
+require "twilio-ruby"
+require "sendgrid-ruby"
+require "redcarpet"
 
 # view index
 
