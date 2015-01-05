@@ -220,12 +220,6 @@ post "/subscriptions/posts/:id" do
 	redirect "/posts/#{post_id}"
 end
 
-# display error for missing phone or email
-
-get "/errors/missing" do
-	File.read("/views/no_contact_error.html")
-end
-
 # subscribe to a category
 
 post "/subscriptions/categories/:id" do
@@ -237,9 +231,19 @@ post "/subscriptions/categories/:id" do
 	email = params["email"]
 	phone = params["phone"]
 
+	if email == nil || phone == nil
+		redirect "/errors/missing"
+	end
+
 	Subscription.create({category_id: category_id, first_name: first_name, last_name: last_name, email: email, phone: phone})
 
-	redirect "/categories/#{category_id}"
+	redirect "/categories/#{category_id}/1"
+end
+
+# display error for missing phone or email
+
+get "/errors/missing" do
+	File.read("/views/no_contact_error.html")
 end
 
 # upvote a category
