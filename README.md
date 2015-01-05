@@ -36,15 +36,15 @@ you can run **whatchu think about?** on your localhost! here's how:
 
 1. make a directory in terminal where you want to keep the sweet, sweet files. 
 
-2. while in that directory, run this command: 'git init'
+2. while in that directory, run this command: `git init`
 
-3. then run this command: 'git clone https://github.com/gretchenziegler/forum.git'
+3. then run this command: `git clone https://github.com/gretchenziegler/forum.git`
 
-4. and then this one: 'git pull origin master'
+4. and then this one: `git pull origin master`
 
-5. and then finally: 'ruby forum_server.rb'
+5. and then finally: `ruby forum_server.rb`
 
-6. in your browser window, type '127.0.0.1:4567', and you will have your own empty **whatchu think about?** forum to play with. because who wouldn't want that?
+6. in your browser window, type `127.0.0.1:4567`, and you will have your own empty **whatchu think about?** forum to play with. because who wouldn't want that?
 
 ![haters gonna hate](http://img4.wikia.nocookie.net/__cb20121027135359/adventuretimewithfinnandjake/images/2/20/Haters-gonna-hate-potatoes-gonna-potate.jpg)
 
@@ -54,4 +54,4 @@ check out the process of creating **whatchu think about?** (think wireframes, er
 
 ## live url
 
-add your thoughts to [**whatchu think about?**](http://gretchenziegler.com)
+see what others think and add your thoughts to [**whatchu think about?**](http://gretchenziegler.com)
