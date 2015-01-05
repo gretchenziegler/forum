@@ -46,7 +46,7 @@ you can run **whatchu think about?** on your localhost! here's how:
 
 6. in your browser window, type '127.0.0.1:4567', and you will have your own empty **whatchu think about?** forum to play with. because who wouldn't want that?
 
-! [haters gonna hate](http://img4.wikia.nocookie.net/__cb20121027135359/adventuretimewithfinnandjake/images/2/20/Haters-gonna-hate-potatoes-gonna-potate.jpg)
+![haters gonna hate](http://img4.wikia.nocookie.net/__cb20121027135359/adventuretimewithfinnandjake/images/2/20/Haters-gonna-hate-potatoes-gonna-potate.jpg)
 
 ## trello
 
