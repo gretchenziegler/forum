@@ -52,4 +52,4 @@ check out the process of creating **whatchu think about?** (think wireframes, er
 
 ## live url
 
-add your thoughts to [**whatchu think about?**](gretchenziegler.com)
+add your thoughts to [**whatchu think about?**](www.gretchenziegler.com)
