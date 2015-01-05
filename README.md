@@ -32,13 +32,19 @@ if you want to reach out to your user base, twilio and sendgrid will help with t
 
 ## download whatchu think about?
 
-you can run **whatchu think about?** on your own localhost! here's how:
+you can run **whatchu think about?** on your localhost! here's how:
 
-1. 
-2.
-3.
-4.
-5.
+1. make a directory in terminal where you want to keep the sweet, sweet files. 
+
+2. while in that directory, run this command: 'git init'
+
+3. then run this command: 'git clone https://github.com/gretchenziegler/forum.git'
+
+4. and then this one: 'git pull origin master'
+
+5. and then finally: 'ruby forum_server.rb'
+
+6. in your browser window, type '127.0.0.1:4567', and you will have your own empty **whatchu think about?** forum to play with. because who wouldn't want that?
 
 ## trello
 
