@@ -7,11 +7,7 @@ require "sinatra"
 require "pry"
 require "mustache"
 require "sinatra/reloader"
-require "redcarpet"
-require "will_paginate"
-require "will_paginate/active_record"
-require "twilio-ruby"
-require "sendgrid-ruby"
+
 
 # view index
 
@@ -210,9 +206,19 @@ post "/subscriptions/posts/:id" do
 	email = params["email"]
 	phone = params["phone"]
 
+	if email == nil || phone == nil
+		redirect "/errors/missing"
+	end
+
 	Subscription.create({post_id: post_id, category_id: category_id, first_name: first_name, last_name: last_name, email: email, phone: phone})
 
 	redirect "/posts/#{post_id}"
+end
+
+# display error for missing phone or email
+
+get "/errors/missing" do
+	File.read("/views/no_contact_error.html")
 end
 
 # subscribe to a category
