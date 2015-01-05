@@ -210,8 +210,6 @@ post "/subscriptions/posts/:id" do
 	last_name = params["last_name"]
 	email = params["email"]
 	phone = params["phone"]
-	
-	binding.pry
 
 	if email == "" || phone == ""
 		redirect "/errors/missing_info"
