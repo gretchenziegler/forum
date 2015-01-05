@@ -211,7 +211,9 @@ post "/subscriptions/posts/:id" do
 	email = params["email"]
 	phone = params["phone"]
 	
-	if email == nil || phone == nil
+	binding.pry
+
+	if email == "" || phone == ""
 		redirect "/errors/missing_info"
 	else
 		Subscription.create({post_id: post_id, category_id: category_id, first_name: first_name, last_name: last_name, email: email, phone: phone})
@@ -230,7 +232,7 @@ post "/subscriptions/categories/:id" do
 	email = params["email"]
 	phone = params["phone"]
 
-	if email == nil || phone == nil
+	if email == "" || phone == ""
 		redirect "/errors/missing_info"
 	else
 		Subscription.create({category_id: category_id, first_name: first_name, last_name: last_name, email: email, phone: phone})
@@ -241,7 +243,7 @@ end
 # show subscription error
 
 get "/errors/missing_info" do
-	File.read("/views/missing_contact_error.html")
+	File.read("./views/missing_contact_error.html")
 end
 
 # upvote a category
