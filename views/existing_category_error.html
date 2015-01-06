@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial scale=1">
+	<title>whatchu think about?</title>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css" /> 
+	<link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+	<nav>
+		<a href='/'>home</a>
+	</nav>
+	
+	<div class="header">
+		<h1>whatchu think about?</h1>
+		<h3 class="title">uh-oh, spaghetti-o's</h3>
+	</div>
+	{{#category}}
+	<div class="add"> 
+		<h1>topic error</h1>
+		<p>it looks like that topic already exists.</p> 
+		<a href="/categories/{{id}}/1">go post whatchu think there, yo!</a>
+	</div>
+	{{/category}}
+	<footer>
+		<p id="copy">whatchu think about? &copy; 2014</p>
+	</footer>
+</body>
+
+</html>

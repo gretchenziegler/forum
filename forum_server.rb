@@ -39,19 +39,35 @@ end
 # create a new category with description
 
 post "/categories" do
+	categories = Category.all.to_ary
+	all_titles = categories.map {|category| category.title}
 	title = params["title"].downcase
-	description = params["description"].downcase
-	user_name = params["user_name"].downcase
-	date_added = Time.now
-	upvotes = 0
-	downvotes = 0
-	vote_total = 0
 
-	new_category = Category.create({title: title, description: description, user_name: user_name, date_added: date_added, upvotes: upvotes, downvotes: downvotes, vote_total: vote_total})
+	if all_titles.include?(title)
+		category = Category.find_by(title: title)
+		redirect "/errors/existing_category/#{category.id}"
+	else
+		description = params["description"].downcase
+		user_name = params["user_name"].downcase
+		date_added = Time.now
+		upvotes = 0
+		downvotes = 0
+		vote_total = 0
 
-	id = new_category.id
+		new_category = Category.create({title: title, description: description, user_name: user_name, date_added: date_added, upvotes: upvotes, downvotes: downvotes, vote_total: vote_total})
 
-	redirect "/categories/#{id}/1"
+		id = new_category.id
+
+		redirect "/categories/#{id}/1"
+	end
+end
+
+# show error for multiple category
+
+get "/errors/existing_category/:id" do
+	category = Category.find(params[:id])
+	template = File.read("./views/existing_category_error.html")
+	Mustache.render(template, category: category)
 end
 
 # delete a post-less category
