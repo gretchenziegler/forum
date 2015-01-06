@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial scale=1">
+	<title>whatchu think about?</title>
+	<link rel="stylesheet" type="text/css" href="../../../stylesheets/style.css" /> 
+	<link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+	<nav>
+		<a href='/'>cancel</a>
+	</nav>
+
+	<div class="header">
+		<h1>whatchu think about...</h1><h3 class="title">leaving us?</h3>
+	</div>
+	
+	<div class="add">
+		<h2>are you sure you want to unsubscribe?</h2>
+		<form method="POST" action="/subscriptions/unsubscribe">
+		<input type="hidden" name="_method" value="DELETE">
+		<label>subscription id
+			<input type="text" name="id">
+		</label>
+		<button>unsubscribe forever and ever</button>
+		</form>
+	</div>
+
+	<footer>
+		<p id="copy">whatchu think about? &copy; 2014</p>
+	</footer>
+</body>
+</html>

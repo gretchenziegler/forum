@@ -230,8 +230,9 @@ post "/subscriptions/posts/:id" do
 	if email == "" || phone == ""
 		redirect "/errors/missing_info"
 	else
-		Subscription.create({post_id: post_id, category_id: category_id, first_name: first_name, last_name: last_name, email: email, phone: phone})
-		redirect "/posts/#{post_id}"
+		subscription = Subscription.create({post_id: post_id, category_id: category_id, first_name: first_name, last_name: last_name, email: email, phone: phone})
+
+		redirect "/subscriptions/#{subscription.id}"
 	end
 end
 
@@ -249,9 +250,38 @@ post "/subscriptions/categories/:id" do
 	if email == "" || phone == ""
 		redirect "/errors/missing_info"
 	else
-		Subscription.create({category_id: category_id, first_name: first_name, last_name: last_name, email: email, phone: phone})
-		redirect "/categories/#{category_id}/1"
+		subscription = Subscription.create({category_id: category_id, first_name: first_name, last_name: last_name, email: email, phone: phone})
+		redirect "/subscriptions/#{subscription.id}"
 	end
+end
+
+# get unsubscribe view
+
+get "/subscriptions/unsubscribe" do
+	File.read("./views/unsubscribe_view.html")
+end
+
+# unsubscribe from a post or category, based on subscription id
+
+delete "/subscriptions/unsubscribe" do
+	id = params["id"]
+	subscription = Subscription.find(id)
+	subscription.destroy
+	redirect "/"
+end
+
+# show subscription id and give option to unsubscribe
+
+get "/subscriptions/:id" do
+	subscription = Subscription.find(params[:id])
+	category = Category.find(subscription.category_id)
+
+	if subscription.post_id
+		post = Post.find(subscription.post_id)
+	end
+
+	subscription_success = File.read("./views/subscription_success.html")
+	Mustache.render(subscription_success, subscription: subscription, post: post, category: category)
 end
 
 # show subscription error

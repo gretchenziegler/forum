@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial scale=1">
+	<title>whatchu think about?</title>
+	<link rel="stylesheet" type="text/css" href="../../../stylesheets/style.css" /> 
+	<link href='https://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Just+Me+Again+Down+Here' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+	{{#subscription}}	
+	<nav>
+		<a href='/'>home</a> | 
+		<a href="/categories/{{category_id}}/1">back</a> |
+		<a href='/subscriptions/unsubscribe'>unsubscribe</a>
+	</nav>
+	{{/subscription}}
+
+	<div class="header">
+		<h1>whatchu think about?</h1>
+		<h3 class="title">success!</h3>
+	</div>
+
+	<div class="add">
+		<h2>you have successfully subscribed to {{#post}}{{title}} in {{/post}}{{#category}}{{title}}{{/category}}</h2>
+	{{#subscription}}
+		<p>if you ever want to unsubscribe (but why would you?) your subscription id is <strong>{{id}}</strong>.</p>
+	</div>
+	{{/subscription}}
+
+	<footer>
+		<p id="copy">whatchu think about? &copy; 2014</p>
+	</footer>
+</body>
+</html>
