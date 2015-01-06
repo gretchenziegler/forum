@@ -32,11 +32,11 @@ if you want to reach out to your user base, twilio and sendgrid will help with t
 
 ## download whatchu think about?
 
-you can run **whatchu think about?** on your localhost! which is kind of dumb, but hey, it's your time and happiness, so have at it! 
+you can run **whatchu think about?** on your localhost! which is kind of redonk, but hey, it's your time and happiness, so have at it! 
 
 here's how:
 
-1. make a directory in terminal where you want to keep the sweet, sweet forum files. 
+1. make a directory in terminal where you want to keep the sweet, sweet forum files.
 
 2. while in that directory, run this command: `git init`
 
